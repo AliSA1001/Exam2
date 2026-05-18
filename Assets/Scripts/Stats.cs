@@ -3,19 +3,19 @@ using UnityEngine;
 
 public class Stats : MonoBehaviour
 {
-    [SerializeField] private float hp = 100;
-     public bool isSave = false;
+    [SerializeField] private float hp = 80; 
+    [SerializeField] private float maxHp = 100; 
+    public bool isSave = false;
     [SerializeField] private TMP_Text hp_text;
-    
 
     public void DecreaseHp()
     {
-        hp = hp - (1* Time.deltaTime);
+        hp -= 1 * Time.deltaTime;
     }
 
     public void IncreasHP()
     {
-        hp = hp + (5* Time.deltaTime);
+        hp += 5 * Time.deltaTime;
     }
 
     private void Update()
@@ -24,17 +24,21 @@ public class Stats : MonoBehaviour
         {
             IncreasHP();
         }
-        else if(!isSave)
+        else
         {
             DecreaseHp();
-
         }
 
-        hp_text.text = hp.ToString();
-
-        if(hp > 100)
+        if (hp > maxHp)
         {
-            hp = 100;
+            hp = maxHp;
         }
+        if (hp < 0)
+        {
+            hp = 0; 
+        }
+
+        
+        hp_text.text = Mathf.CeilToInt(hp).ToString();
     }
 }

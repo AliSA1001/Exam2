@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8701520608567007083}
   - component: {fileID: 8949415795578701912}
+  - component: {fileID: 4504596821868983623}
+  - component: {fileID: 7839206250265867537}
   m_Layer: 0
   m_Name: Campfire
   m_TagString: Untagged
@@ -55,6 +57,45 @@ LODGroup:
     renderers:
     - renderer: {fileID: 3395791203673499219}
   m_Enabled: 1
+--- !u!135 &4504596821868983623
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769888791056330974}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 3.47
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7839206250265867537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769888791056330974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97f87d9c3076e54b8f7fe89da7be1e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CampFire
+  Smoke: {fileID: 5905116977158704874}
+  fire: {fileID: 7865300319863451881}
+  player: {fileID: 0}
+  stats: {fileID: 0}
+  FireOn: 0
+  canInteract: 0
 --- !u!1 &5905116977158704874
 GameObject:
   m_ObjectHideFlags: 0

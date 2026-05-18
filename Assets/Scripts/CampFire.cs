@@ -1,12 +1,11 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CampFire : MonoBehaviour
 {
     [SerializeField] private GameObject Smoke;
     [SerializeField] private GameObject fire;
-    [SerializeField] private CharacterController player;
-    [SerializeField] private Stats stats;
+
+    private Stats activePlayerStats;
 
     public bool FireOn;
     public bool canInteract;
@@ -16,38 +15,48 @@ public class CampFire : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             canInteract = true;
+
+            if (other.TryGetComponent<Stats>(out Stats foundStats))
+            {
+                activePlayerStats = foundStats;
+            }
         }
     }
-
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             canInteract = false;
+
+            if (activePlayerStats != null)
+            {
+                activePlayerStats.isSave = false;
+            }
+
             FireOn = false;
+            fire.SetActive(false);
+            Smoke.SetActive(true); 
+
+            activePlayerStats = null;
         }
     }
 
     private void Update()
     {
-         if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && canInteract)
         {
-            Smoke.SetActive(false);
-            fire.SetActive(true);
-            FireOn = true;
+            if (!FireOn)
+            {
+                Smoke.SetActive(false);
+                fire.SetActive(true);
+                FireOn = true;
+            }
         }
-        if (FireOn)
-        {
-            stats.isSave = true;
-        }
-        else if (!FireOn)
-        {
-            stats.isSave = false;
-        }
-         
 
-        
+        if (activePlayerStats != null)
+        {
+            activePlayerStats.isSave = FireOn;
+        }
     }
-
 }
